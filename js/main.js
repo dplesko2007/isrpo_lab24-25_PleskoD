@@ -62,5 +62,37 @@ function printProduct({name, price, category, inStock}) {
     console.log(`Name: ${category}`);
     console.log(`In Stock: ${inStock}`);
 }
-
 printProduct(product);
+
+console.log("Spread для массивов");
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combined = [...arr1, ...arr2];
+console.log("Копия массива: ", copy);
+const extended = [0, ...arr1, 7, 8];
+console.log("Расширенный массив: ", extended);
+
+console.log("Spread для объектов");
+const person = {
+    name: "Ivan",
+    age: 30,
+};
+const address = {
+    city: "St. Petesburg",
+    street: "Невский проспект",
+};
+const fullInfo = {...person, ...address };
+console.log("Полная информация: ", fullInfo);
+const personCopy = { ...person };
+console.log("Копия объекта: ", personCopy);
+const updated = {...person, age: 31, occupation:
+    "Developer"
+};
+console.log("Обновленный объект: ", update);
+
+console.log("Rest оператор");
+function sum(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+console.log("Сумма 1,2,3: ", sum(1, 2, 3));
+console.log("Сумма 1,2,3,4,5: ", sum(1, 2, 3, 4, 5));
