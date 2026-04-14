@@ -117,3 +117,78 @@ console.log(square(3));
 console.log(cube(2));
 console.log(E);
 
+console.log("Промисы");
+const simplePromise = new Promise((resolve, reject) => {
+    const success = true;
+    if (success) { resolve("Операция выполнена успешно!");
+} else {
+    reject("Произошла ошибка!");
+  }
+});
+simplePromise
+  .then((result) => console.log("Result:", result))
+  .then((error) => console.log("Error:", error));
+function delay(ms) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(`Прошло ${ms} миллисекунд`);
+        }, ms);
+    });
+}
+delay(1000)
+  .then((message) => console.log(message));
+
+function fetchUserData(userId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (userId > 0) {
+                resolve({
+                    id: userId,
+                    name: "Иван Иванов",
+                    email: "ivan@example.com",
+                });
+            } else {
+                reject("Неверный ID пользователя");
+            }
+        }, 1500);
+    });
+}
+fetchUserData(1)
+.then((user) => console.log("Пользователь: ", user))
+.catch((error) => console.log("Ошибка:", error));
+
+function step1() {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(`Шаг 1 завершен`), 500);
+    });
+}
+function step2() {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(`${previousResult} -> Шаг 2 завершен`), 500);
+    });
+}
+function step3() {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(`${previousResult} -> Шаг 3 завершен`), 500);
+    });
+}
+step1()
+  .then((result1) => step2(result1))
+  .then((result2) => step3(result2))
+  .then((finalResult) => console.log("Финальный результат:", finalResult))
+  .catch((error) => console.log("Ошибка в цепочке: ", error));
+
+function checkInventory(productName, stock) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (stock > 0) {
+                resolve(`Товар "${productName}" есть в наличии. Остаток: ${stock} шт.`);
+            } else {
+                reject(`Товара "${productName}" нет на складе.`);
+            }
+        }, 1000);
+    });
+}
+checkInventory("Ноутбук", 5)
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
