@@ -234,53 +234,95 @@
 //     }
 // }
 // getData()
-function delay(ms) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(`Прошло ${ms} миллисекунд`);
-        }, ms)
-    });
+// function delay(ms) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve(`Прошло ${ms} миллисекунд`);
+//         }, ms)
+//     });
+// }
+
+// async function cookDinner() {
+//     console.log("Начинаем готовить...");
+
+//     const pasta = await delay(1000).then(() => "Паста готова");
+//     console.log(pasta);
+//     const sauce = await delay(500).then(() => "Соус готов");
+//     console.log(sauce);
+//     const salad = await delay(700).then(() => "Салат готов");
+//     console.log(salad);
+
+//     return "Ужин готов!";
+// }
+
+// cookDinner().then((result) => console.log(result));
+
+// async function cookDinnerFast() {
+//     console.log("Готовим всё одеовременно...");
+
+//     const [pasta, sauce, salad] = await Promise.all([
+//         delay(1000).then(() => "Паста готова"),
+//         delay(500).then(() => "Соус готов"),
+//         delay(700).then(() => "Салат готов"),
+//     ]);
+
+//     console.log(pasta, sauce, salad);
+//     return "Ужин готов быстрее!";
+// }
+// cookDinnerFast().then((result) => console.log(result));
+
+// async function processOrder() {
+//     console.log("Готовим заказ...");
+
+//     const lookFor = await delay(1000).then(() => "Проверяем наличие товара");
+//     console.log(lookFor);
+//     const calcPrice = await delay(500).then(() => "Проводим расчет стоимости");
+//     console.log(calcPrice);
+//     const acceptOrder = await delay(700).then(() => "Подтверждение заказа");
+//     console.log(acceptOrder);
+
+//     return "Заказ подтвержден!";
+// }
+// processOrder().then((acceptOrder) => console.log(acceptOrder));
+
+// console.log("Fetch API");
+// async function getUsers() {
+//     try {
+//         const response = await fetch("https://jsonplaceholder.typicode.com/");
+//         if (!response.ok) {
+//             throw new Error(`HTTP ошибка! Статус: ${response.status}`);
+//         }
+//         const users = await response.json();
+//         console.log("Первые три пользователя: ");
+//         users.slice(0, 3).forEach((user) => {
+//             console.log(`- ${user.name} (${user.email})`);
+//         });
+//     } catch(error) {
+//         console.log(`Ошибка при загрузке пользователей: `, error_message);
+//     }
+// }
+// getUsers();
+
+async function createPost() {
+    try {
+        const newPost = {
+            title: "Моя первая запись",
+            body: "Это содержание моей первой записи в блоге",
+            userId: 1,
+        };
+        const response = await fetch("https://jsonplaceholder.typicode.com/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            bode: JSON.stringify(newPost),
+        });
+        const createdPost = await response.json();
+        console.log("Создана новая запись: ");
+        console.log("ID: ", createdPost.id);
+        console.log("Заголовок: ", createdPost.title);
+    } catch (error) {
+        console.log("Ошибка при создании записи: ", error.message);
+    }
 }
-
-async function cookDinner() {
-    console.log("Начинаем готовить...");
-
-    const pasta = await delay(1000).then(() => "Паста готова");
-    console.log(pasta);
-    const sauce = await delay(500).then(() => "Соус готов");
-    console.log(sauce);
-    const salad = await delay(700).then(() => "Салат готов");
-    console.log(salad);
-
-    return "Ужин готов!";
-}
-
-cookDinner().then((result) => console.log(result));
-
-async function cookDinnerFast() {
-    console.log("Готовим всё одеовременно...");
-
-    const [pasta, sauce, salad] = await Promise.all([
-        delay(1000).then(() => "Паста готова"),
-        delay(500).then(() => "Соус готов"),
-        delay(700).then(() => "Салат готов"),
-    ]);
-
-    console.log(pasta, sauce, salad);
-    return "Ужин готов быстрее!";
-}
-cookDinnerFast().then((result) => console.log(result));
-
-async function processOrder() {
-    console.log("Готовим заказ...");
-
-    const lookFor = await delay(1000).then(() => "Проверяем наличие товара");
-    console.log(lookFor);
-    const calcPrice = await delay(500).then(() => "Проводим расчет стоимости");
-    console.log(calcPrice);
-    const acceptOrder = await delay(700).then(() => "Подтверждение заказа");
-    console.log(acceptOrder);
-
-    return "Заказ подтвержден!";
-}
-processOrder().then((acceptOrder) => console.log(acceptOrder));
+createPost();
