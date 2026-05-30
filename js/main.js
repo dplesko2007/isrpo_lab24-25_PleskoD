@@ -303,26 +303,128 @@
 // }
 // getUsers();
 
-async function createPost() {
-    try {
-        const newPost = {
-            title: "Моя первая запись",
-            body: "Это содержание моей первой записи в блоге",
-            userId: 1,
-        };
-        const response = await fetch("https://jsonplaceholder.typicode.com/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            bode: JSON.stringify(newPost),
-        });
-        const createdPost = await response.json();
-        console.log("Создана новая запись: ");
-        console.log("ID: ", createdPost.id);
-        console.log("Заголовок: ", createdPost.title);
-    } catch (error) {
-        console.log("Ошибка при создании записи: ", error.message);
-    }
-}
-createPost();
+// async function createPost() {
+//     try {
+//         const newPost = {
+//             title: "Моя первая запись",
+//             body: "Это содержание моей первой записи в блоге",
+//             userId: 1,
+//         };
+//         const response = await fetch("https://jsonplaceholder.typicode.com/", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             bode: JSON.stringify(newPost),
+//         });
+//         const createdPost = await response.json();
+//         console.log("Создана новая запись: ");
+//         console.log("ID: ", createdPost.id);
+//         console.log("Заголовок: ", createdPost.title);
+//     } catch (error) {
+//         console.log("Ошибка при создании записи: ", error.message);
+//     }
+// }
+// createPost();
+
+// console.log("Optional Chaining");
+// const user1 = {
+//     name: "Андрей",
+//     address: {
+//         city: "Волжский",
+//         street: "Пушкина"
+//     },
+// };
+
+// const user2 = {
+//     name: "Дмитрий",
+// };
+
+// const city1 = user2.address && user2.address.city;
+// console.log("Город (старый способ):", city1);
+
+// const city2 = user2.address?.street;
+// console.log("Город (новый способ):", city2);
+// const street = user1.address?.street;
+// console.log("Улица: ", street);
+
+// const admin = {
+//     name: "Администратор",
+//     permissions: {
+//         canDelete: () => true,
+//     },
+// };
+
+// const guest = {
+//     name: "Гость",
+// };
+
+// console.log("Админ может удалять?", admin.permissions?.canDelete?.());
+// console.log("Гость может удалять?", guest.permissions?.canDelete?.());
+
+// const company = {
+//     name: "Tech Corp",
+//     employees: [
+//         { name: "Надежда", role: "Deve;oper" },
+//         { name: "Анна", role: "Designer"},
+//     ],
+// };
+
+// const startup = {
+//     name: "New Startup",
+// };
+
+// console.log("Первый сотрудник:", company.employees?.[0]?.name);
+// console.log("Первый сотрудник стартапа: ", startup.emplyees?.[0]?.name);
+
+// console.log("Nullish Coalescing");
+// const value1 = 0;
+// const value2 = "";
+// const value3 = false;
+// const value4 = null;
+// const value5 = undefined;
+
+// console.log(`value1 || "defualt":`, value1 || "default");
+// console.log(`value2 || "defualt":`, value2 || "default");
+// console.log(`value3 || "defualt":`, value3 || "default");
+// console.log(`value4 || "defualt":`, value4 || "default");
+// console.log(`value5 || "defualt":`, value5 || "default");
+
+// console.log(`value1 ?? "defualt":`, value1 ?? "default");
+// console.log(`value2 ?? "defualt":`, value2 ?? "default");
+// console.log(`value3 ?? "defualt":`, value3 ?? "default");
+// console.log(`value4 ?? "defualt":`, value4 ?? "default");
+// console.log(`value5 ?? "defualt":`, value5 ?? "default");
+
+// function displayUserSettings(settings) {
+//     const theme = settings?.theme ?? "light";
+//     const fontSize = settings?.fontSize ?? 14;
+//     const notifications = settings?.notifications ?? true;
+
+//     console.log("Настройки пользователя: ");
+//     console.log("Тема: ", theme);
+//     console.log("Размер шрифта: ", fontSize);
+//     console.log("Уведомления: ", notifications);
+// }
+
+// displayUserSettings({ theme: "dark", fontSize: 16 });
+// displayUserSettings({ notifications: false });
+// displayUserSettings({});
+
+// const apiResponse = {
+//     data: {
+//         user: {
+//             profile: {
+//                 settings: {
+//                     language: "ru",
+//                 },
+//             },
+//         },
+//     },
+// }
+// const language = apiResponse?.data?.user?.profile?.settings?.language ?? "en";
+// console.log("Язык: ", language);
+
+// const emptyResponse = {};
+// const defaultLanguage = emptyResponse?.data?.user?.profile?.settings?.language ?? "en";
+// console.log("Язык по умолчанию: ", defaultLanguage);
